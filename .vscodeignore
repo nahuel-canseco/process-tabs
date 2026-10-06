@@ -1,0 +1,8 @@
+.git/**
+.github/**
+src/**
+node_modules/**
+*.vsix
+*.zip
+.DS_Store
+Thumbs.db

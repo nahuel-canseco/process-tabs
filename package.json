@@ -1,0 +1,133 @@
+{
+  "name": "process-tabs",
+  "displayName": "Process Tabs",
+  "description": "Save and switch between named sets of editor tabs without reorganizing your workspace or keeping a sidebar open.",
+  "version": "0.4.0",
+  "publisher": "nahuelcanseco",
+  "license": "MIT",
+  "author": {
+    "name": "Nahuel Canseco"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nahuel-canseco/process-tabs.git"
+  },
+  "homepage": "https://github.com/nahuel-canseco/process-tabs#readme",
+  "bugs": {
+    "url": "https://github.com/nahuel-canseco/process-tabs/issues"
+  },
+  "icon": "media/icon.png",
+  "galleryBanner": {
+    "color": "#1e1e2e",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "extensionKind": [
+    "ui"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "tabs",
+    "tab groups",
+    "workspace",
+    "files",
+    "process",
+    "workflow",
+    "session",
+    "context switcher",
+    "editor tabs",
+    "productivity"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "processTabs.switcher",
+        "title": "Process Tabs: Switch Process",
+        "icon": "$(folder-library)"
+      },
+      {
+        "command": "processTabs.manage",
+        "title": "Process Tabs: Manage Processes"
+      },
+      {
+        "command": "processTabs.createFromCurrentTabGroup",
+        "title": "Process Tabs: Create Process from Current Tab Group"
+      },
+      {
+        "command": "processTabs.addCurrentFile",
+        "title": "Process Tabs: Add Current File to Active Process"
+      },
+      {
+        "command": "processTabs.addCurrentTabGroup",
+        "title": "Process Tabs: Add Current Tab Group to Active Process"
+      },
+      {
+        "command": "processTabs.setProcessArea",
+        "title": "Process Tabs: Use Current Editor Group as Process Area"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "processTabs.switcher",
+          "group": "navigation@99",
+          "when": "resourceScheme == file"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "command": "processTabs.addCurrentFile",
+          "group": "navigation@90",
+          "when": "resourceScheme == file"
+        },
+        {
+          "command": "processTabs.switcher",
+          "group": "navigation@91"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Process Tabs",
+      "properties": {
+        "processTabs.closePreviousOnSwitch": {
+          "type": "boolean",
+          "default": true,
+          "description": "Close clean tabs from the previous process when switching. Only the process working editor group is managed; other editor groups and unsaved files are left untouched."
+        },
+        "processTabs.showStatusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the active process in the VS Code status bar."
+        },
+        "processTabs.autoAddOpenedFiles": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically add newly opened file tabs to the active process."
+        },
+        "processTabs.removeClosedFiles": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically remove a file from the active process when its last open tab is closed manually. Tabs closed by Process Tabs while switching remain saved in the process."
+        },
+        "processTabs.moveNewFilesToProcessArea": {
+          "type": "boolean",
+          "default": true,
+          "description": "When a newly opened file is auto-added, place it in the Process Tabs editor area instead of leaving it in whichever editor group happened to be active."
+        },
+        "processTabs.keepToolEditorsSeparate": {
+          "type": "boolean",
+          "default": true,
+          "description": "Keep tool/custom-editor tabs such as Claude or ChatGPT in a separate editor group from process source files."
+        }
+      }
+    }
+  }
+}
